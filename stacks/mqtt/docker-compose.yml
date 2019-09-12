@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+
+  mqtt:
+#    build:
+#      context: ./elasticsearch/
+#      dockerfile: Dockerfile
+#      args:
+#        ELK_VERSION: $ELK_VERSION
+    image: eclipse-mosquitto:1.6.4
+    restart: always
+    volumes:
+      - ./config:/mosquitto/config
+      - data:/mosquitto/data
+      - log:/mosquitto/log
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+
+volumes:
+  data:
+    driver: local
+  log:
+    driver: local
+
